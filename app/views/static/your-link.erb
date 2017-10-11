@@ -1,0 +1,16 @@
+
+<h1 align="center"> Here is everyone's link:</h1>
+<br></br>
+<div>
+<ul>
+
+<% Url.all.each do |u| %> 
+  <h4 align="center"><%= u.long_url %> </h4>
+  <p align="center"><a href="/<%= u.short_url %>"><%= "jeson.lee/" + u.short_url %></a><p>
+ <br></br>
+<% end %> 
+
+
+</ul>
+
+</div>
