@@ -1,4 +1,4 @@
-
+/
 #GET / POST
 
 get '/' do	
@@ -25,6 +25,8 @@ get '/your-link' do
     erb :"static/your-link"
 end 
 
+get '/sorry' do
+end
 
 
 get '/:a' do 
@@ -32,7 +34,7 @@ get '/:a' do
     if a != nil
     	redirect a.long_url 
     else 
-    	redirect to "sorry page"
+    	redirect to "sorry"
     end
 end 
 
@@ -48,7 +50,7 @@ post '/urls' do
         return @url1.to_json
     	# redirect '/your-link'
     else
-        @error = @url1.errors.full_messages.join(',')
+       r @error = @url1.errors.full_messages.join(',')
         return @error.to_json
         # redirect '/'
     end

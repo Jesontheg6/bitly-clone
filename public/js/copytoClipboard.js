@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 
 	$('.url_form').submit(function(e){
-		console.log("enter2");
+		// console.log("enter2");
 			e.preventDefault();
 			$.ajax({
 			url: '/urls', //this refers to the route post '/urls'
@@ -54,14 +54,54 @@ function copyToClipboard(element) {
 }
 
 
-$('.bitly').click(function() {
-    var thmb = this;
-    var src = this.src;
-    $('.bitly_2').fadeOut(400,function(){
-        thmb.src = this.src;
-        $(this).fadeIn(400)[0].src = src;
-    });
-});
+function log(){
+var form = $('url_form');
+    form.on('submit',function(formSubmissionEvent){
+        formSubmissionEvent.preventDefault();
+        // console.log("Prevented default action!")
+
+
+    // $('body').prepend('<img src="/img/spinner.gif" id="spinner"/>')
+
+    $.ajax({
+        url: form.attr('action'),
+        method: form.attr('method'),
+        data: form.serialize(),
+        dataType: 'JSON',
+        success: function(response) {
+            if (response.id) {
+                // $("#box").append('<h2>'+ response.ori_url + '</h2>');
+                // $("#box").append('<tr>'+ response.short_url +  '</tr>');
+
+                $("#"tbody).append("<tr>"
+                    + "<th>" + response.id + "</th>" +
+                    "<th>" + response.long_url + "</th>" +
+                    "<th>" + "<a href='" + response.short_url + "'>jesonlee/" + response.short_url + "</a>" + "</th>" +
+                    "<th>" + response.counter + "</th>" +
+                    "</tr>");
+            } else {
+                $('#sorry').append('Sorry, please check for these errors:'+ response)
+
+            }
+
+        }
+    })
+
+
+
+    })
+}
+
+document.addEventListener("DOMContentLoaded", log);
+
+// $('.bitly').click(function() {
+//     var thmb = this;
+//     var src = this.src;
+//     $('.bitly_2').fadeOut(400,function(){
+//         thmb.src = this.src;
+//         $(this).fadeIn(400)[0].src = src;
+//     });
+// });
 
 
  

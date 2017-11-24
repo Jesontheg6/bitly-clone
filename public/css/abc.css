@@ -49,7 +49,7 @@ img {
 
 #abcd {
 	display: block;
-	width: 100px;
+	width: auto;
 }
 
 .url_form {
